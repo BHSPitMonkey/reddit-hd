@@ -1,0 +1,16 @@
+<app>
+  <id>reddit-hd</id>
+  <name>Reddit HD</name>
+  <version>0.1</version>
+  <description>Watch Reddit on your couch. Like a boss.</description>
+  <thumb>http://stepheneisenhauer.com/boxee/reddit-hd-thumb.png</thumb>
+  <repository>http://dir.boxee.tv/apps</repository>
+  <media>video</media>
+  <copyright>Stephen Eisenhauer</copyright>
+  <email>mail@stepheneisenhauer.com</email>
+  <type>skin</type>
+  <startWindow>14000</startWindow>
+  <platform>all</platform>
+  <minversion>0.9.11</minversion>
+  <test-app>true</test-app>
+</app>

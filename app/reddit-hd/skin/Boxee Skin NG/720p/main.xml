@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<window type="window" id="14000">
+	<defaultcontrol always="true">100</defaultcontrol>
+	<allowoverlay>no</allowoverlay>
+	<onload lang="python">
+<![CDATA[
+# import main
+
+items = mc.ListItems()
+for i in range(25,35):
+	item = mc.ListItem( mc.ListItem.MEDIA_UNKNOWN )
+	item.SetProperty("score", "123")									# Votes
+	item.SetThumbnail('http://www.google.com/images/nav_logo26.png')	# Thumb
+	item.SetLabel("Check me out! I have a bunch of long, long headline text. Reddit is the voice of the internet! DON'T YOU MEAN WAFFLES HAHA")										# Title
+	item.SetProperty("subtitle", "submitted 2 hours ago by BHSPitMonkey")			# Subtitle
+	item.SetPath('http://google.com')									# URL
+	items.append(item)
+
+mc.GetActiveWindow().GetList(100).SetItems(items)
+]]>
+	</onload>
+	<controls>
+		<!-- Background -->
+		<control type="image" id="101">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<texture>backdrop.png</texture>
+		</control>
+		<control type="group" id="110">
+			<posx>700</posx>
+			<posy>22</posy>
+			<width>500</width>
+			<height>40</height>
+			<!-- Signed in label -->
+			<control type="label" id="102">
+				<posx>400</posx>
+				<posy>0</posy>
+				<width>350</width>
+				<height>40</height>
+				<font>font22</font>
+				<align>right</align>
+				<aligny>center</aligny>
+				<textcolor>black</textcolor>
+				<label>not signed in</label>
+			</control>
+			<!-- Auth button -->
+			<control type="button" id="103">
+				<description>login button control</description>
+				<posx>414</posx>
+				<posy>0</posy>
+				<width>37</width>
+				<height>37</height>
+				<visible>true</visible>
+				<texturefocus border="5">button_auth_focus.png</texturefocus>
+				<texturenofocus border="5">button_auth.png</texturenofocus>
+				<onfocus>-</onfocus>
+				<onup>-</onup>
+				<ondown>100</ondown>
+				<onleft>100</onleft>
+				<onright>104</onright>
+				<onclick lang="python">
+<![CDATA[
+
+]]>
+				</onclick>
+			</control>
+			<!-- Settings button -->
+			<control type="button" id="104">
+				<description>login button control</description>
+				<posx>464</posx>
+				<posy>0</posy>
+				<width>37</width>
+				<height>37</height>
+				<visible>true</visible>
+				<texturefocus border="5">button_settings_focus.png</texturefocus>
+				<texturenofocus border="5">button_settings.png</texturenofocus>
+				<onfocus>-</onfocus>
+				<onup>-</onup>
+				<ondown>100</ondown>
+				<onleft>103</onleft>
+				<onright>-</onright>
+				<onclick lang="python">
+<![CDATA[
+
+]]>
+				</onclick>
+			</control>
+		</control>
+		<!-- Content list -->
+		<control type="list" id="100">
+			<description>Links</description>
+			<posx>40</posx>
+			<posy>110</posy>
+			<width>1060</width>
+			<height>600</height>
+			<visible>true</visible>
+			<onup>110</onup>
+			<ondown>3</ondown>
+			<onleft>1</onleft>
+			<onright>103</onright>
+			<viewtype label="3D list">list</viewtype>
+			<orientation>vertical</orientation>
+			<pagecontrol>25</pagecontrol>
+			<scrolltime>200</scrolltime>
+			<itemlayout width="1060" height="112">
+				<!-- Score -->
+				<control type="label">
+					<posx>62</posx>
+					<posy>36</posy>
+					<width>80</width>
+					<height>40</height>
+					<font>font34</font>
+					<aligny>center</aligny>
+					<selectedcolor>white</selectedcolor>
+					<align>center</align>
+					<info>ListItem.Property(custom:score)</info>
+				</control>
+				<!-- Thumbnail -->
+				<control type="image">
+					<posx>120</posx>
+					<posy>10</posy>
+					<width>140</width>
+					<height>92</height>
+					<texture>default_thumb.png</texture>
+					<info>ListItem.Thumbnail</info>
+				</control>
+				<!-- Headline -->
+				<control type="label">
+					<posx>275</posx>
+					<posy>10</posy>
+					<width>640</width>
+					<height>56</height>
+					<font>font22</font>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textcolor>white</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<info>ListItem.Label</info>
+				</control>
+				<!-- Subtext -->
+				<control type="label">
+					<posx>275</posx>
+					<posy>74</posy>
+					<width>640</width>
+					<height>56</height>
+					<font>font18</font>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textcolor>grey</textcolor>
+					<info>ListItem.Property(custom:subtitle)</info>
+				</control>
+			</itemlayout>
+			<focusedlayout width="1060" height="112">
+				<!-- Selection bg -->
+				<control type="image">
+					<posx>0</posx>
+					<posy>0</posy>
+					<width>1060</width>
+					<height>112</height>
+					<texture>item_focus.png</texture>
+					<info>ListItem.Thumbnail</info>
+				</control>
+				<!-- Score -->
+				<control type="label">
+					<posx>62</posx>
+					<posy>36</posy>
+					<width>80</width>
+					<height>40</height>
+					<font>font34</font>
+					<align>center</align>
+					<aligny>center</aligny>
+					<selectedcolor>white</selectedcolor>
+					<info>ListItem.Property(custom:score)</info>
+				</control>
+				<!-- Thumbnail -->
+				<control type="image">
+					<posx>120</posx>
+					<posy>10</posy>
+					<width>140</width>
+					<height>92</height>
+					<texture>default_thumb.png</texture>
+					<info>ListItem.Thumbnail</info>
+				</control>
+				<!-- Headline -->
+				<control type="label">
+					<posx>275</posx>
+					<posy>10</posy>
+					<width>640</width>
+					<height>56</height>
+					<font>font22</font>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textcolor>white</textcolor>
+					<wrapmultiline>true</wrapmultiline>
+					<info>ListItem.Label</info>
+				</control>
+				<!-- Subtext -->
+				<control type="label">
+					<posx>275</posx>
+					<posy>74</posy>
+					<width>640</width>
+					<height>56</height>
+					<font>font18</font>
+					<align>left</align>
+					<aligny>top</aligny>
+					<textcolor>grey</textcolor>
+					<info>ListItem.Property(custom:subtitle)</info>
+				</control>
+			</focusedlayout>
+		</control>
+		<control type="button" id="1000">
+			<width>88</width>
+			<height>39</height>
+			<label>VIDEO</label>
+			<align>center</align>
+			<textcolor>008888ff</textcolor>
+			<texturefocus>menuitem_on.png</texturefocus>
+			<texturenofocus>-</texturenofocus>
+			<visible>true</visible>
+			<onclick lang="python">
+<![CDATA[
+mc.ShowDialogNotification('You pressed a button!')
+]]>
+		   </onclick>
+		</control>
+		<!-- Faders -->
+		<control type="image">
+			<width>1280</width>
+			<height>90</height>
+			<posx>0</posx>
+			<posy>630</posy>
+			<visible>true</visible>
+			<texture>bottom_fader.png</texture>
+		</control>
+		<control type="image">
+			<width>1280</width>
+			<height>25</height>
+			<posx>0</posx>
+			<posy>98</posy>
+			<visible>true</visible>
+			<texture>top_fader.png</texture>
+		</control>
+	</controls>
+</window>
