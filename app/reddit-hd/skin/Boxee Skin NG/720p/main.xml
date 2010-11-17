@@ -4,19 +4,32 @@
 	<allowoverlay>no</allowoverlay>
 	<onload lang="python">
 <![CDATA[
-# import main
 
-items = mc.ListItems()
-for i in range(25,35):
-	item = mc.ListItem( mc.ListItem.MEDIA_UNKNOWN )
-	item.SetProperty("score", "123")									# Votes
-	item.SetThumbnail('http://www.google.com/images/nav_logo26.png')	# Thumb
-	item.SetLabel("Check me out! I have a bunch of long, long headline text. Reddit is the voice of the internet! DON'T YOU MEAN WAFFLES HAHA")										# Title
-	item.SetProperty("subtitle", "submitted 2 hours ago by BHSPitMonkey")			# Subtitle
-	item.SetPath('http://google.com')									# URL
-	items.append(item)
+def refresh():
+	mc.ShowDialogWait()
+	import reddit
+	r=reddit.Reddit()
+	stories = r.get_subreddit('videos').get_hot(limit=15)
 
-mc.GetActiveWindow().GetList(100).SetItems(items)
+	items = mc.ListItems()
+	for story in stories:
+		if story.media:
+			item = mc.ListItem( mc.ListItem.MEDIA_VIDEO_CLIP )
+			item.SetProperty("score", str(story.score))						# Votes
+			item.SetThumbnail(str(story.media['oembed']['thumbnail_url']))	# Thumb
+			item.SetLabel(str(story.title))									# Title
+			item.SetProperty("subtitle", "submitted by " + str(story.author))		# Subtitle
+			if 'url' in story.media['oembed']:
+				item.SetPath(str(story.media['oembed']['url']))				# URL
+			else:
+				item.SetPath(str(story.url))								# URL
+			items.append(item)
+
+	mc.GetActiveWindow().GetList(100).SetItems(items)
+	mc.HideDialogWait()
+
+if len(mc.GetActiveWindow().GetList(100).GetItems()) == 0:
+	refresh()
 ]]>
 	</onload>
 	<controls>
@@ -35,7 +48,7 @@ mc.GetActiveWindow().GetList(100).SetItems(items)
 			<height>40</height>
 			<!-- Signed in label -->
 			<control type="label" id="102">
-				<posx>400</posx>
+				<posx>350</posx>
 				<posy>0</posy>
 				<width>350</width>
 				<height>40</height>
@@ -44,6 +57,27 @@ mc.GetActiveWindow().GetList(100).SetItems(items)
 				<aligny>center</aligny>
 				<textcolor>black</textcolor>
 				<label>not signed in</label>
+			</control>
+			<!-- Refresh button -->
+			<control type="button" id="105">
+				<description>login button control</description>
+				<posx>364</posx>
+				<posy>0</posy>
+				<width>37</width>
+				<height>37</height>
+				<visible>true</visible>
+				<texturefocus border="5">button_refresh_focus.png</texturefocus>
+				<texturenofocus border="5">button_refresh.png</texturenofocus>
+				<onfocus>-</onfocus>
+				<onup>-</onup>
+				<ondown>100</ondown>
+				<onleft>100</onleft>
+				<onright>103</onright>
+				<onclick lang="python">
+<![CDATA[
+refresh()
+]]>
+				</onclick>
 			</control>
 			<!-- Auth button -->
 			<control type="button" id="103">
@@ -58,7 +92,7 @@ mc.GetActiveWindow().GetList(100).SetItems(items)
 				<onfocus>-</onfocus>
 				<onup>-</onup>
 				<ondown>100</ondown>
-				<onleft>100</onleft>
+				<onleft>105</onleft>
 				<onright>104</onright>
 				<onclick lang="python">
 <![CDATA[

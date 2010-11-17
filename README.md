@@ -11,8 +11,22 @@ application for Boxee.
 Project Status
 --------------
 
-Reddit HD is currently pre-pre-pre-alpha software.
-I hope to have it functional soon.
+Reddit HD is currently pre-pre-alpha software.
+It currently displays a list of the top 15 posts
+from reddit.com/r/videos and enables playback 
+of most of them.  The settings and login buttons
+do nothing;  All you can do right now is refresh.
+
+Attribution
+-----------
+
+User mellort deserves plenty of credit for making the 
+Reddit API wrapper used by Reddit HD, found here:
+
+https://github.com/mellort/reddit_api
+
+And, obviously, none of this would matter without the 
+great Reddit.com community and admins.
 
 
 Contributing
