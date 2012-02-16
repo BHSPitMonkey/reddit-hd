@@ -17,6 +17,11 @@ from reddit.com/r/videos and enables playback
 of most of them.  The settings and login buttons
 do nothing;  All you can do right now is refresh.
 
+Screenshots
+-----------
+
+![](https://github.com/BHSPitMonkey/reddit-hd/wiki/screenshots/screen1.png)
+
 Attribution
 -----------
 
